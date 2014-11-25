@@ -49,11 +49,42 @@ public class Rutas {
 	    } 
 	}
 
-	/*public modificarGrafo(){
-		//se modifica el grafo para usar solo el costo de las aristas
+	public Ciudad obtenerCiudad(String laquetal){
+		
+		Ciudad resultado = new Ciudad("",0);
+		
+		for (int i=0; i<this.ciudades.size(); i++) {
+			Ciudad aux = this.ciudades.get(i);
+			String temp = aux.getNombre();
+			if (temp.equals(laquetal)) {
+				resultado = aux;
+			}
+		}
+
+		return resultado;
 	}
 
-	public caminosFactibles(){
+	public Autopista obtenerAutopista(String origen, String destino){
+		
+		Autopista resultado = new Autopista("","",0);
+		
+		for (int i=0; i<this.autopistas.size(); i++) {
+			Autopista aux = this.autopistas.get(i);
+			String temp1 = aux.getOrigen();
+			String temp2 = aux.getDestino();
+			if (temp1.equals(origen) && temp2.equals(destino)) {
+				resultado = aux;
+			}
+		}
+
+		return resultado;
+	}
+
+	public void modificarGrafo(){
+		
+	}
+
+	/*public caminosFactibles(){
 		//Bellman con ciclos de costo negativo
 	}
 
@@ -75,8 +106,10 @@ public class Rutas {
 				while (iterador!=casosDePrueba){ 
 					chao.obtenerGrafo(in);
 					iterador++;
-					System.out.println(chao.ciudades);
-					System.out.println(chao.autopistas);
+					//System.out.println(chao.ciudades);
+					//System.out.println(chao.autopistas);
+					//System.out.println(chao.obtenerCiudad("SanJose"));
+					//System.out.println(chao.obtenerAutopista("SanJose","PaloAlto"));
 					chao = new Rutas();
 				}
 				in.close();
