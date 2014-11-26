@@ -9,6 +9,7 @@ public class Ciudad  {
 	
 	private String nombre;
 	private int costo;
+	private boolean haSidoVisitado = false;
 
 	public Ciudad(String nombreNuevo, int costoNuevo){
 		this.nombre	= nombreNuevo;
@@ -23,12 +24,20 @@ public class Ciudad  {
 		return this.costo;
 	}
 
+	public boolean getVisitado(){
+		return this.haSidoVisitado;
+	}
+
 	public void setNombre(String nuevoNombre){
 		this.nombre = nuevoNombre;
 	}
 
 	public void setCosto(int nuevoCosto){
 		this.costo = nuevoCosto;
+	}
+
+	public void setVisitado(boolean loVisite){
+		this.haSidoVisitado = loVisite;
 	}
 
 	@Override

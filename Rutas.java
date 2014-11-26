@@ -51,7 +51,7 @@ public class Rutas {
 
 	public Ciudad obtenerCiudad(String laquetal){
 		
-		Ciudad resultado = new Ciudad("",0);
+		Ciudad resultado = null;
 		
 		for (int i=0; i<this.ciudades.size(); i++) {
 			Ciudad aux = this.ciudades.get(i);
@@ -66,7 +66,7 @@ public class Rutas {
 
 	public Autopista obtenerAutopista(String origen, String destino){
 		
-		Autopista resultado = new Autopista("","",0);
+		Autopista resultado = null;
 		
 		for (int i=0; i<this.autopistas.size(); i++) {
 			Autopista aux = this.autopistas.get(i);
@@ -80,17 +80,50 @@ public class Rutas {
 		return resultado;
 	}
 
+	public void modificarArista(Autopista aux){
+		
+		Ciudad temp1 = this.obtenerCiudad(aux.getOrigen());
+		Ciudad temp2 = this.obtenerCiudad(aux.getDestino());
+
+		int ganancia1, ganancia2, peaje, total;
+		ganancia1 = temp1.getCosto();
+		ganancia2 = temp2.getCosto();
+		peaje = aux.getPeaje();
+
+		total = ganancia1 + ganancia2 - peaje;
+		
+		aux.setPeaje(total);
+	}
+
 	public void modificarGrafo(){
-		
+
+		for (int i=0 ; i<this.autopistas.size() ; i++) {
+			Autopista temporal = this.autopistas.get(i);
+			this.modificarArista(temporal);
+		}
 	}
 
-	/*public caminosFactibles(){
+	public ArrayList<Ciudad> adyacentes(Ciudad gotica){
+
+		ArrayList<Ciudad> resultado = new ArrayList<Ciudad>();
+
+		for (int i=0; i<this.autopistas.size() ; i++) {
+			
+			Autopista temporal = this.autopistas.get(i);
+			
+			if (temporal.getOrigen().equals(gotica.getNombre())) {
+				Ciudad agregar = this.obtenerCiudad(temporal.getDestino());
+				resultado.add(agregar);
+			}
+		}
+
+		return resultado;
+	}
+
+	//public caminosFactibles(){
 		//Bellman con ciclos de costo negativo
-	}
+	//}
 
-	public static void main(String[] args) {
-		
-	}*/
 
 	public static void main(String[] args) {
 		
@@ -110,6 +143,17 @@ public class Rutas {
 					//System.out.println(chao.autopistas);
 					//System.out.println(chao.obtenerCiudad("SanJose"));
 					//System.out.println(chao.obtenerAutopista("SanJose","PaloAlto"));
+
+					//Autopista hola = chao.obtenerAutopista("PaloAlto","SanJose");
+					//chao.modificarArista(hola);
+					//System.out.println(hola);
+
+					//System.out.println(chao.adyacentes(chao.obtenerCiudad("Berkeley")));
+
+					//chao.modificarGrafo();
+					//System.out.println(chao.autopistas);
+					/* SIRVEN TODOS HASTA AHORA */
+
 					chao = new Rutas();
 				}
 				in.close();
