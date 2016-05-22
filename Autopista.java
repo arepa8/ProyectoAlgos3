@@ -32,8 +32,8 @@ public class Autopista {
 		this.origen = nuevoOrigen;
 	}
 
-	public void setPeaje(String nuevoDestino){
-		this.destino = nuevoDestino;
+	public void setPeaje(String newDestino){
+		this.destino = newDestino;
 	}
 
 	public void setPeaje(int nuevoPeaje){
